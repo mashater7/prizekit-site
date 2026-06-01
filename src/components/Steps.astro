@@ -4,14 +4,15 @@ const { heading, steps } = Astro.props;
 <section class="steps-sec">
   <div class="container">
     <h2 class="sec-h2">{heading}</h2>
-    <div class="steps">
+    <div class="grid steps-grid">
       {steps.map((s, i) => (
-        <div class="step">
-          <div class="step-num">{i + 1}</div>
-          <div class="step-body">
-            <h3>{s.title}</h3>
-            <p class="muted">{s.text}</p>
+        <div class="card step-card">
+          <div class="step-ic">
+            <span class="step-emoji">{s.icon}</span>
+            <span class="step-no">{i + 1}</span>
           </div>
+          <h3>{s.title}</h3>
+          <p class="muted">{s.text}</p>
         </div>
       ))}
     </div>

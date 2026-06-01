@@ -108,19 +108,19 @@ a { color: var(--brand); }
 .lead { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 auto 30px; }
 .hero-note { font-size: 14px; color: var(--muted); margin-top: 16px; }
 
-/* ---------- Шаги (компактные) ---------- */
-.steps { display: grid; gap: 26px 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 940px; margin: 0 auto; }
-.step { display: flex; gap: 14px; align-items: flex-start; }
-.step-num { flex: none; width: 42px; height: 42px; border-radius: 13px; background: var(--grad-gold); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 7px 16px -5px rgba(251,138,61,.5); }
-.step-body h3 { margin: 4px 0 6px; font-size: 17px; }
-.step-body p { margin: 0; font-size: 15px; }
+/* ---------- Шаги (карточки) ---------- */
+.steps-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 980px; margin: 0 auto; }
+.step-card h3 { margin: 0 0 6px; font-size: 17px; }
+.step-card p { margin: 0; font-size: 15px; }
+.step-ic { position: relative; width: 58px; height: 58px; border-radius: 16px; background: linear-gradient(135deg, #FFF1D6, #FCE4EF); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.step-emoji { font-size: 28px; line-height: 1; }
+.step-no { position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; border-radius: 50%; background: var(--grad-gold); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -3px rgba(251,138,61,.6); }
 
 /* ---------- Возможности ---------- */
 .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 @media (min-width: 720px) { .feats { grid-template-columns: 1fr 1fr; } }
-.feats li { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-weight: 600; }
-.feat-ic { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #E9F4D9; color: #5E9A28; display: flex; align-items: center; justify-content: center; }
-.feat-ic svg { width: 15px; height: 15px; }
+.feats li { display: flex; align-items: center; gap: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 15px 18px; font-weight: 600; }
+.feat-emoji { flex: none; width: 30px; text-align: center; font-size: 22px; line-height: 1; }
 
 /* ---------- FAQ ---------- */
 .faq { max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 4px 24px; box-shadow: 0 1px 2px rgba(120,80,20,.04); }
