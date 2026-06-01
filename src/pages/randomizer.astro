@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+<BaseLayout title="Рандомайзер для розыгрыша онлайн — выбрать победителя | Приз_КитБот" description="Бесплатный рандомайзер: вставьте список участников и честно выберите случайных победителей. Для розыгрышей в MAX используйте Приз_КитБот.">
+  <section>
+    <div class="container" style="max-width:680px;">
+      <h1>Рандомайзер — выбрать победителя</h1>
+      <p class="muted">Вставьте участников (по одному в строке), укажите число победителей и нажмите кнопку.</p>
+      <textarea id="entries" rows="10" placeholder="Аня&#10;Боря&#10;Вера" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:var(--radius);font-size:15px;"></textarea>
+      <div style="display:flex;gap:12px;align-items:center;margin:14px 0;">
+        <label>Победителей: <input id="count" type="number" min="1" value="1" style="width:80px;padding:8px;border:1px solid var(--border);border-radius:10px;"></label>
+        <button id="run" class="btn">Выбрать</button>
+      </div>
+      <div id="result"></div>
+    </div>
+  </section>
+  <CtaBanner title="Проводите розыгрыши прямо в MAX — автоматически" />
+</BaseLayout>
+
+<script>
+  import { parseEntries, pickWinners } from '../lib/randomizer.js';
+  const $ = (id) => document.getElementById(id);
+  $('run').addEventListener('click', () => {
+    const entries = parseEntries($('entries').value);
+    const count = Math.max(1, parseInt($('count').value) || 1);
+    const winners = pickWinners(entries, count);
+    const box = $('result');
+    if (!winners.length) { box.innerHTML = '<p class="muted">Добавьте хотя бы одного участника.</p>'; return; }
+    box.innerHTML = '<div class="card"><b>Победители:</b><ol>' +
+      winners.map((w) => '<li>' + w.replace(/</g, '&lt;') + '</li>').join('') + '</ol></div>';
+  });
+</script>
