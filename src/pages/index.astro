@@ -1,11 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Steps from '../components/Steps.astro';
+import FeatureList from '../components/FeatureList.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const connectSteps = [
+  { title: 'Напишите боту', text: 'Откройте Приз_КитБот в MAX и нажмите Старт.' },
+  { title: 'Добавьте в админы', text: 'Добавьте бота в подписчики, затем в администраторы канала.' },
+  { title: 'Создайте розыгрыш', text: 'Заполните форму: текст, приз, сроки — и запустите.' },
+];
+const howSteps = [
+  { title: 'Создаёте розыгрыш', text: 'В удобной форме: текст, фото, число победителей, сроки.' },
+  { title: 'Пост публикуется', text: 'Бот сам публикует пост с кнопкой «Участвовать» в каналах.' },
+  { title: 'Люди участвуют', text: 'Бот проверяет подписку и считает участников.' },
+  { title: 'Бот выбирает', text: 'Случайно и честно определяет победителей и оповещает их.' },
+];
+const faq = [
+  { q: 'Можно ли в MAX проводить розыгрыши бесплатно?', a: 'Да, Приз_КитБот бесплатный. Подключите бота к каналу и создайте розыгрыш.' },
+  { q: 'Как бот выбирает победителя?', a: 'Случайным образом из участников, выполнивших все условия. Доступен переразыгрыш.' },
+  { q: 'Сколько каналов и победителей может быть?', a: 'Неограниченное число каналов-спонсоров и победителей.' },
+  { q: 'Что такое реферальная ссылка?', a: 'Персональная ссылка-приглашение: за приведённых друзей участник получает дополнительные билеты.' },
+];
 ---
-<BaseLayout title="Приз_КитБот — розыгрыши в MAX" description="Бесплатный бот для розыгрышей и конкурсов в MAX.">
-  <section>
-    <div class="container">
-      <h1>Приз_КитБот</h1>
-      <p class="muted">Страница в разработке.</p>
-    </div>
-  </section>
+<BaseLayout title="Розыгрыши и конкурсы в MAX — бесплатный бот | Приз_КитБот" description="Приз_КитБот — бесплатный бот для честных розыгрышей и конкурсов в MAX: проверка подписки, антибот, реферальная система, любое число победителей.">
+  <Hero />
+  <FeatureCards />
+  <Steps heading="Как подключить за 3 шага" steps={connectSteps} />
+  <Steps heading="Как это работает" steps={howSteps} />
+  <FeatureList />
+  <FaqAccordion items={faq} />
+  <CtaBanner />
 </BaseLayout>
