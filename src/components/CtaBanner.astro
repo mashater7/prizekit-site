@@ -1,0 +1,14 @@
+---
+import { SITE } from '../data/site';
+const { title = 'Проведите первый розыгрыш за 2 минуты', button = 'Открыть бота' } = Astro.props;
+---
+<section class="cta">
+  <div class="container">
+    <h2>{title}</h2>
+    <a href={SITE.botUrl} class="btn">{button}</a>
+  </div>
+</section>
+<style>
+  .cta { text-align: center; }
+  .cta h2 { margin-bottom: 20px; }
+</style>

@@ -1,0 +1,16 @@
+---
+import { SITE } from '../data/site';
+---
+<section class="hero">
+  <div class="container">
+    <h1>Розыгрыши и конкурсы в&nbsp;MAX — <span class="accent">бесплатно</span></h1>
+    <p class="lead muted">Честный выбор победителей, проверка подписки и рост канала. Запустите розыгрыш за пару минут — прямо в {SITE.botName}.</p>
+    <a href={SITE.botUrl} class="btn">Запустить розыгрыш</a>
+  </div>
+</section>
+<style>
+  .hero { text-align: center; padding: 72px 0 56px; }
+  .hero h1 { font-size: 40px; margin: 0 0 14px; }
+  .accent { color: var(--brand); }
+  .lead { font-size: 18px; max-width: 640px; margin: 0 auto 26px; }
+</style>

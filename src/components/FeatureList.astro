@@ -1,0 +1,23 @@
+---
+const items = [
+  '🛡️ Защита Антибот от накруток',
+  '🎟️ Реферальная система — билеты за друзей',
+  '🔒 Работает с приватными каналами',
+  '🖼️ Фото и видео в посте розыгрыша',
+  '👥 Мультиканальные розыгрыши со спонсорами',
+  '🔁 Переразыгрыш приза в один клик',
+  '📊 Статистика подписок и участников',
+  '🏆 Любое число победителей',
+];
+---
+<section style="background:var(--bg-soft);">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:28px;">Возможности</h2>
+    <ul class="feats">{items.map((t) => <li>{t}</li>)}</ul>
+  </div>
+</section>
+<style>
+  .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .feats li { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-weight: 600; }
+  @media (min-width: 720px) { .feats { grid-template-columns: 1fr 1fr; } }
+</style>
