@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mashater7.github.io/prizekit-site/sitemap-index.xml
