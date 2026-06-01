@@ -1,12 +1,12 @@
 ---
-import { SITE, NAV } from '../data/site';
+import { SITE, NAV, withBase } from '../data/site';
 ---
 <header class="site-header">
   <div class="container hdr">
-    <a href="/" class="logo"><img src="/logo.jpg" alt={SITE.botName} width="32" height="32" /> {SITE.botName}</a>
+    <a href={withBase('')} class="logo"><img src={withBase('logo.jpg')} alt={SITE.botName} width="32" height="32" /> {SITE.botName}</a>
     {/* TODO: переключатель продуктов (RandoCat/AiCat/...) — включить при добавлении ботов */}
     <nav class="nav">
-      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+      {NAV.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
     </nav>
     <a href={SITE.botUrl} class="btn">Открыть бота</a>
   </div>

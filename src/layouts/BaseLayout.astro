@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { withBase } from '../data/site';
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
@@ -13,7 +14,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <link rel="icon" type="image/jpeg" href={withBase('favicon.jpg')} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

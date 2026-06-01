@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../data/site';
+import { SITE, withBase } from '../data/site';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -9,16 +9,16 @@ const year = new Date().getFullYear();
       <p class="muted">{SITE.tagline}</p>
     </div>
     <nav>
-      <a href="/how-it-works">Как это работает</a>
-      <a href="/randomizer">Рандомайзер</a>
-      <a href="/pricing">Тарифы</a>
-      <a href="/faq">FAQ</a>
-      <a href="/blog">Блог</a>
+      <a href={withBase('how-it-works')}>Как это работает</a>
+      <a href={withBase('randomizer')}>Рандомайзер</a>
+      <a href={withBase('pricing')}>Тарифы</a>
+      <a href={withBase('faq')}>FAQ</a>
+      <a href={withBase('blog')}>Блог</a>
     </nav>
     <nav>
-      <a href="/offer">Договор оферты</a>
-      <a href="/terms">Пользовательское соглашение</a>
-      <a href="/privacy">Конфиденциальность</a>
+      <a href={withBase('offer')}>Договор оферты</a>
+      <a href={withBase('terms')}>Пользовательское соглашение</a>
+      <a href={withBase('privacy')}>Конфиденциальность</a>
     </nav>
     {/* TODO: блок «Другие наши боты — скоро» при добавлении продуктов */}
   </div>

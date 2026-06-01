@@ -12,6 +12,14 @@ export const NAV = [
   { href: '/faq', label: 'FAQ' },
 ];
 
+// Префиксует путь базовым URL сайта (для GitHub Pages project-page и кастомного домена).
+export function withBase(path = '') {
+  // Astro отдаёт BASE_URL без завершающего слэша (напр. '/prizekit-site' или '/'),
+  // поэтому добавляем его перед склейкой, чтобы не получить '/prizekit-sitefaq'.
+  const base = (import.meta.env.BASE_URL + '/').replace(/\/+$/, '/');
+  return (base + String(path).replace(/^\/+/, '')).replace(/([^:]\/)\/+/g, '$1');
+}
+
 export const FEATURES = [
   { icon: '🎯', title: 'Честный розыгрыш', text: 'Победители выбираются случайно, бот проверяет подписку каждого участника.' },
   { icon: '📈', title: 'Рост канала', text: 'Реферальная система даёт билеты за друзей, мультиканальные розыгрыши приводят новых подписчиков.' },

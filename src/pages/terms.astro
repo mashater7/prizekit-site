@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../data/site';
 ---
 <BaseLayout title="Пользовательское соглашение | Приз_КитБот" description="Правила использования сервиса Приз_КитБот для проведения розыгрышей и конкурсов в MAX.">
   <section><div class="container" style="max-width:760px;">
@@ -17,11 +18,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </ul>
 
     <h2>3. Коммерческие условия</h2>
-    <p>Условия оплаты платных услуг, ответственность сторон и порядок оказания услуг определяются <a href="/offer">Договором оферты</a>.</p>
+    <p>Условия оплаты платных услуг, ответственность сторон и порядок оказания услуг определяются <a href={withBase('offer')}>Договором оферты</a>.</p>
 
     <h2>4. Контакты</h2>
     <p>По вопросам использования сервиса: <a href="mailto:contact.kitbot@mail.ru">contact.kitbot@mail.ru</a>.</p>
 
-    <p class="muted"><em>Полная редакция документа готовится. Действующая версия коммерческих условий — в <a href="/offer">Договоре оферты</a>.</em></p>
+    <p class="muted"><em>Полная редакция документа готовится. Действующая версия коммерческих условий — в <a href={withBase('offer')}>Договоре оферты</a>.</em></p>
   </div></section>
 </BaseLayout>
