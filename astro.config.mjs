@@ -5,4 +5,5 @@ export default defineConfig({
   site: 'https://mashater7.github.io',
   base: '/prizekit-site',
   integrations: [sitemap()],
+  build: { inlineStylesheets: 'never' },
 });

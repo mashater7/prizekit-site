@@ -24,13 +24,3 @@ const year = new Date().getFullYear();
   </div>
   <div class="container copyright muted">© {year} {SITE.botName}</div>
 </footer>
-<style>
-  .site-footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 36px 0 24px; margin-top: 40px; }
-  .cols { display: grid; gap: 24px; }
-  .ft-brand { font-weight: 800; margin-bottom: 6px; }
-  .site-footer nav { display: flex; flex-direction: column; gap: 8px; }
-  .site-footer nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
-  .site-footer nav a:hover { color: var(--fg); }
-  .copyright { margin-top: 24px; font-size: 13px; }
-  @media (min-width: 720px) { .cols { grid-template-columns: 2fr 1fr 1fr; } }
-</style>

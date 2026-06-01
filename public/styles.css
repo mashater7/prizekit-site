@@ -1,0 +1,85 @@
+/* ===== global.css (токены + базовые стили) ===== */
+:root {
+  --brand: #EF7D2E;        /* коралл — основной акцент */
+  --brand-dark: #D86A1E;
+  --brand-pink: #E0479E;
+  --brand-yellow: #F6C026;
+  --brand-green: #8DC63F;
+  --fg: #2B2B2B;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --bg-soft: #FBF6EC;      /* тёплый кремовый */
+  --border: #efe7d8;
+  --radius: 14px;
+  --maxw: 1080px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); color: var(--fg); background: var(--bg); line-height: 1.55; }
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+section { padding: 56px 0; }
+h1, h2, h3 { line-height: 1.2; }
+a { color: var(--brand); }
+.btn {
+  display: inline-block; background: var(--brand); color: #fff; text-decoration: none;
+  font-weight: 700; padding: 14px 26px; border-radius: var(--radius); border: none;
+  cursor: pointer; font-size: 16px; transition: background .15s;
+}
+.btn:hover { background: var(--brand-dark); }
+.btn-secondary { background: var(--bg-soft); color: var(--fg); border: 1px solid var(--border); }
+.muted { color: var(--muted); }
+.grid { display: grid; gap: 20px; }
+@media (min-width: 720px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+.card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+
+/* ===== Header.astro ===== */
+.site-header { border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 50; }
+.hdr { display: flex; align-items: center; gap: 20px; padding: 12px 20px; }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 800; color: var(--fg); text-decoration: none; }
+.nav { display: none; gap: 18px; margin-left: auto; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 600; }
+.nav a:hover { color: var(--fg); }
+.site-header .btn { padding: 9px 16px; font-size: 14px; }
+.hdr .btn { margin-left: auto; }
+@media (min-width: 860px) { .nav { display: flex; } .hdr .btn { margin-left: 0; } }
+
+/* ===== Footer.astro ===== */
+.site-footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 36px 0 24px; margin-top: 40px; }
+.cols { display: grid; gap: 24px; }
+.ft-brand { font-weight: 800; margin-bottom: 6px; }
+.site-footer nav { display: flex; flex-direction: column; gap: 8px; }
+.site-footer nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.site-footer nav a:hover { color: var(--fg); }
+.copyright { margin-top: 24px; font-size: 13px; }
+@media (min-width: 720px) { .cols { grid-template-columns: 2fr 1fr 1fr; } }
+
+/* ===== Hero.astro ===== */
+.hero { text-align: center; padding: 72px 0 56px; }
+.hero h1 { font-size: 40px; margin: 0 0 14px; }
+.accent { color: var(--brand); }
+.lead { font-size: 18px; max-width: 640px; margin: 0 auto 26px; }
+
+/* ===== Steps.astro ===== */
+.step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 10px; }
+
+/* ===== FeatureList.astro ===== */
+.feats { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.feats li { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-weight: 600; }
+@media (min-width: 720px) { .feats { grid-template-columns: 1fr 1fr; } }
+
+/* ===== FaqAccordion.astro ===== */
+.faq { max-width: 760px; margin: 0 auto; }
+details { border-bottom: 1px solid var(--border); padding: 4px 0; }
+summary { cursor: pointer; font-weight: 700; padding: 16px 0; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.ans { padding: 0 0 16px; color: var(--muted); }
+
+/* ===== CtaBanner.astro ===== */
+.cta { text-align: center; }
+.cta h2 { margin-bottom: 20px; }
+
+/* ===== blog/index.astro ===== */
+.post-list { list-style: none; padding: 0; }
+.post-list li { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.post-list a { font-weight: 700; font-size: 18px; text-decoration: none; }
