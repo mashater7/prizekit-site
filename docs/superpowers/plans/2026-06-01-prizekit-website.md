@@ -1103,7 +1103,7 @@ git commit -m "chore: robots.txt и финальная проверка сбор
 **Files:**
 - Create: `.github/workflows/deploy.yml`
 
-**Предусловие:** у клиента есть аккаунт GitHub и создан пустой репозиторий (например `prizekit-site`). Уточнить имя пользователя GitHub и имя репозитория — от них зависит итоговый адрес `https://<user>.github.io/<repo>/` и значение `site`/`base` в конфиге.
+**Данные клиента:** GitHub-логин `mashater7`. Создать пустой репозиторий, например `prizekit-site` → итоговый адрес `https://mashater7.github.io/prizekit-site/`, значения `site: 'https://mashater7.github.io'` и `base: '/prizekit-site'` в конфиге.
 
 - [ ] **Step 1: Обновить astro.config.mjs под адрес GitHub Pages**
 
