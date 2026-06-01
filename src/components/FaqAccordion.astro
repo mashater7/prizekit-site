@@ -1,0 +1,23 @@
+---
+const { items } = Astro.props; // [{ q, a }]
+---
+<section>
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:28px;">Частые вопросы</h2>
+    <div class="faq">
+      {items.map((it) => (
+        <details>
+          <summary>{it.q}</summary>
+          <div class="ans" set:html={it.a}></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .faq { max-width: 760px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--border); padding: 4px 0; }
+  summary { cursor: pointer; font-weight: 700; padding: 16px 0; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .ans { padding: 0 0 16px; color: var(--muted); }
+</style>
