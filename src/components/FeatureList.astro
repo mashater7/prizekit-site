@@ -1,18 +1,23 @@
 ---
 const items = [
-  '🛡️ Защита Антибот от накруток',
-  '🎟️ Реферальная система — билеты за друзей',
-  '🔒 Работает с приватными каналами',
-  '🖼️ Фото и видео в посте розыгрыша',
-  '👥 Мультиканальные розыгрыши со спонсорами',
-  '🔁 Переразыгрыш приза в один клик',
-  '📊 Статистика подписок и участников',
-  '🏆 Любое число победителей',
+  'Защита Антибот от накруток',
+  'Реферальная система — билеты за друзей',
+  'Работает с приватными каналами',
+  'Фото и видео в посте розыгрыша',
+  'Мультиканальные розыгрыши со спонсорами',
+  'Переразыгрыш приза в один клик',
+  'Статистика подписок и участников',
+  'Любое число победителей',
 ];
+const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 ---
-<section style="background:var(--bg-soft);">
+<section class="band">
   <div class="container">
-    <h2 style="text-align:center;margin-bottom:28px;">Возможности</h2>
-    <ul class="feats">{items.map((t) => <li>{t}</li>)}</ul>
+    <h2 class="sec-h2">Возможности</h2>
+    <ul class="feats">
+      {items.map((t) => (
+        <li><span class="feat-ic" set:html={check}></span>{t}</li>
+      ))}
+    </ul>
   </div>
 </section>

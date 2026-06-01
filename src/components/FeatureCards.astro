@@ -3,11 +3,11 @@ import { FEATURES } from '../data/site';
 ---
 <section>
   <div class="container">
-    <h2 style="text-align:center;margin-bottom:28px;">Что вы получите</h2>
+    <h2 class="sec-h2">Что вы получите</h2>
     <div class="grid grid-3">
       {FEATURES.map((f) => (
-        <div class="card">
-          <div style="font-size:28px;">{f.icon}</div>
+        <div class="card feature">
+          <div class="icon-tile" set:html={f.icon}></div>
           <h3>{f.title}</h3>
           <p class="muted">{f.text}</p>
         </div>
