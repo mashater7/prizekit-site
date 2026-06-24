@@ -80,5 +80,6 @@ const allLd = [orgLd, websiteLd, ...jsonLd];
     <Header />
     <main><slot /></main>
     <Footer />
+    <script is:inline src={withBase('anim.js')} defer></script>
   </body>
 </html>
