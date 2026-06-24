@@ -1,8 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import { SITE, withBase } from '../data/site';
+
+const howSteps = [
+  { name: 'Добавьте бота в канал', text: 'Добавьте Приз_КитБот в подписчики канала MAX, затем — в администраторы.' },
+  { name: 'Дайте права', text: 'Боту нужны все права администратора, кроме «назначать и удалять администраторов».' },
+  { name: 'Создайте розыгрыш', text: 'Нажмите «Новый розыгрыш» и заполните форму: текст поста, приз, число победителей, условие завершения, при необходимости Антибот и рефералы, фото или видео.' },
+  { name: 'Бот ведёт розыгрыш', text: 'Бот публикует пост с кнопкой участия, проверяет подписку и случайно выбирает победителей, оповещая их.' },
+];
+const howToLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Как провести розыгрыш в MAX',
+  description: 'Пошаговая инструкция, как запустить честный розыгрыш в канале MAX с ботом Приз_КитБот.',
+  totalTime: 'PT2M',
+  tool: [{ '@type': 'HowToTool', name: SITE.botName }],
+  step: howSteps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+  })),
+};
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL(withBase(''), Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Как это работает', item: new URL(withBase('how-it-works'), Astro.site).href },
+  ],
+};
 ---
-<BaseLayout title="Как провести розыгрыш в MAX — пошаговая инструкция | Приз_КитБот" description="Пошагово: как подключить Приз_КитБот к каналу MAX, дать права администратора и запустить розыгрыш с проверкой подписки.">
+<BaseLayout
+  title="Как провести розыгрыш в MAX — пошаговая инструкция | Приз_КитБот"
+  description="Пошагово: как подключить Приз_КитБот к каналу MAX, дать права администратора и запустить розыгрыш с проверкой подписки."
+  jsonLd={[howToLd, breadcrumbLd]}
+>
   <section>
     <div class="container" style="max-width:760px;">
       <h1>Как провести розыгрыш в MAX</h1>

@@ -1,8 +1,14 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-const { title, description } = Astro.props;
+const { title, description, ogType, publishedTime, jsonLd = [] } = Astro.props;
 ---
-<BaseLayout title={`${title} | Приз_КитБот`} description={description}>
+<BaseLayout
+  title={`${title} | Приз_КитБот`}
+  description={description}
+  ogType={ogType}
+  publishedTime={publishedTime}
+  jsonLd={jsonLd}
+>
   <article class="container" style="max-width:740px;">
     <h1>{title}</h1>
     <slot />

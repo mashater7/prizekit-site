@@ -6,6 +6,7 @@ import Steps from '../components/Steps.astro';
 import FeatureList from '../components/FeatureList.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import { SITE } from '../data/site';
 
 const connectSteps = [
   { icon: '✍️', title: 'Напишите боту', text: 'Откройте Приз_КитБот в MAX и нажмите Старт.' },
@@ -23,9 +24,36 @@ const faq = [
   { q: 'Как бот выбирает победителя?', a: 'Случайным образом из участников, выполнивших все условия. Доступен переразыгрыш.' },
   { q: 'Сколько каналов и победителей может быть?', a: 'Неограниченное число каналов-спонсоров и победителей.' },
   { q: 'Что такое реферальная ссылка?', a: 'Персональная ссылка-приглашение: за приведённых друзей участник получает дополнительные билеты.' },
+  { q: 'Можно ли разыграть несколько призов в одном посте?', a: 'Да. Приз_КитБот поддерживает мультипризовые розыгрыши: несколько призов на разные даты в одном розыгрыше с промежуточными итогами.' },
 ];
+
+// Структурированные данные: бесплатное приложение + блок вопросов-ответов (для поисковиков и AI-ответов).
+const appLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.botName,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'MAX',
+  description: SITE.description,
+  url: SITE.botUrl,
+  inLanguage: 'ru-RU',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'RUB' },
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title="Розыгрыши и конкурсы в MAX — бесплатный бот | Приз_КитБот" description="Приз_КитБот — бесплатный бот для честных розыгрышей и конкурсов в MAX: проверка подписки, антибот, реферальная система, любое число победителей.">
+<BaseLayout
+  title="Розыгрыши и конкурсы в MAX — бесплатный бот | Приз_КитБот"
+  description="Приз_КитБот — бесплатный бот для честных розыгрышей и конкурсов в MAX: проверка подписки, антибот, реферальная система, мультипризовые розыгрыши, любое число победителей."
+  jsonLd={[appLd, faqLd]}
+>
   <Hero />
   <FeatureCards />
   <Steps heading="Как подключить за 3 шага" steps={connectSteps} />
