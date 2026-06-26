@@ -12,6 +12,8 @@ export const SITE = {
 
 export const NAV = [
   { href: '/how-it-works', label: 'Как это работает' },
+  { href: '/birzha', label: 'Кит_Биржа' },
+  { href: '/articles', label: 'Статьи' },
   { href: '/randomizer', label: 'Рандомайзер' },
   { href: '/pricing', label: 'Тарифы' },
   { href: '/faq', label: 'FAQ' },

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../data/site';
+import data from '../data/channels.json';
+
+// channels.json генерирует scripts/generate-site-data.mjs на сервере из БД бота.
+// Уже отсортирован по подписчикам убыв.; здесь подстраховываемся ещё раз.
+const channels = (data.channels || [])
+  .slice()
+  .sort((a, b) => (b.subscribers || 0) - (a.subscribers || 0));
+
+const total = channels.length;
+const fmtNum = (n) =>
+  typeof n === 'number' ? n.toLocaleString('ru-RU') : '—';
+const updated = data.generatedAt
+  ? new Date(data.generatedAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
+
+// ItemList — структурированные данные для поиска/AI.
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Кит_Биржа — каталог каналов MAX',
+  numberOfItems: total,
+  itemListElement: channels.slice(0, 100).map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.title,
+    url: c.link || undefined,
+  })),
+};
+---
+<BaseLayout
+  title="Кит_Биржа — каталог каналов MAX | Приз_КитБот"
+  description="Кит_Биржа: каталог каналов мессенджера MAX, участвовавших в розыгрышах. Название, ссылка и число подписчиков. Сортировка по количеству подписчиков."
+  jsonLd={[itemListLd]}
+>
+  <section><div class="container" style="max-width:880px;">
+    <h1>Кит_Биржа</h1>
+    <p class="lead" style="margin-left:0;text-align:left;">
+      Каталог каналов MAX, замеченных в розыгрышах. Нажмите на заголовок столбца,
+      чтобы отсортировать.
+    </p>
+
+    {total === 0 ? (
+      <p class="muted">Список каналов скоро появится.</p>
+    ) : (
+      <>
+        <p class="muted birzha-meta">
+          Каналов в каталоге: <strong>{fmtNum(total)}</strong>{updated && <> · обновлено {updated}</>}
+        </p>
+        <div class="table-wrap">
+          <table class="birzha" id="birzha">
+            <thead>
+              <tr>
+                <th class="sortable" data-key="title" data-type="text" scope="col">Канал <span class="arr"></span></th>
+                <th class="sortable num sorted-desc" data-key="subscribers" data-type="num" scope="col">Подписчиков <span class="arr">▾</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {channels.map((c) => (
+                <tr>
+                  <td data-title={c.title}>
+                    {c.link
+                      ? <a href={c.link} target="_blank" rel="nofollow noopener">{c.title}</a>
+                      : c.title}
+                  </td>
+                  <td class="num" data-subscribers={c.subscribers ?? 0}>{fmtNum(c.subscribers)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    )}
+  </div></section>
+
+  <script is:inline src={withBase('birzha.js')} defer></script>
+</BaseLayout>

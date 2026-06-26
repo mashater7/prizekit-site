@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../data/site';
+
+// Новые статьи сверху.
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const fmtDate = (d) =>
+  d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title="Статьи для админов каналов MAX | Приз_КитБот"
+  description="Полезные статьи для администраторов и организаторов каналов в MAX: продвижение, розыгрыши, рост аудитории. Материалы сообщества «Охватория»."
+>
+  <section><div class="container" style="max-width:880px;">
+    <h1>Статьи</h1>
+    <p class="lead" style="margin-left:0;text-align:left;">
+      Полезные материалы для админов и организаторов каналов в MAX — продвижение,
+      розыгрыши, рост аудитории.
+    </p>
+
+    {articles.length === 0 ? (
+      <p class="muted">Скоро здесь появятся статьи.</p>
+    ) : (
+      <div class="grid art-grid">
+        {articles.map((p) => (
+          <a class="card art-card reveal" href={withBase(`articles/${p.id}`)}>
+            {p.data.image && (
+              <div class="art-thumb"><img src={withBase(p.data.image)} alt={p.data.title} loading="lazy" /></div>
+            )}
+            <div class="art-body">
+              <time class="muted art-date" datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+              <h3>{p.data.title}</h3>
+              <p class="muted">{p.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div></section>
+</BaseLayout>

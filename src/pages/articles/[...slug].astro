@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { SITE, withBase } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const published = post.data.pubDate.toISOString();
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(withBase(post.data.image || SITE.ogImage), Astro.site).href;
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  inLanguage: 'ru-RU',
+  datePublished: published,
+  dateModified: published,
+  mainEntityOfPage: pageUrl,
+  url: pageUrl,
+  image: imageUrl,
+  author: { '@type': 'Organization', name: SITE.botName },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.botName,
+    logo: { '@type': 'ImageObject', url: new URL(withBase('logo.jpg'), Astro.site).href },
+  },
+};
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL(withBase(''), Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Статьи', item: new URL(withBase('articles'), Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: pageUrl },
+  ],
+};
+---
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  ogType="article"
+  image={post.data.image || SITE.ogImage}
+  publishedTime={published}
+  jsonLd={[articleLd, breadcrumbLd]}
+>
+  {post.data.image && (
+    <p><img class="art-hero" src={withBase(post.data.image)} alt={post.data.title} /></p>
+  )}
+  <Content />
+  {post.data.sourceUrl && (
+    <p class="muted art-source">Источник: <a href={post.data.sourceUrl} target="_blank" rel="nofollow noopener">пост в MAX</a></p>
+  )}
+</BlogLayout>

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-const { title, description, ogType, publishedTime, jsonLd = [] } = Astro.props;
+const { title, description, ogType, image, publishedTime, jsonLd = [] } = Astro.props;
 ---
 <BaseLayout
   title={`${title} | Приз_КитБот`}
   description={description}
   ogType={ogType}
+  image={image}
   publishedTime={publishedTime}
   jsonLd={jsonLd}
 >
