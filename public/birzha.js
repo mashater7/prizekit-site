@@ -45,4 +45,31 @@
       sortBy(key, type, dir);
     });
   });
+
+  // ── Поиск по названию канала ───────────────────────────────────────────────
+  var search = document.getElementById('birzha-search');
+  var countEl = document.getElementById('birzha-count');
+  var emptyEl = document.getElementById('birzha-empty');
+  var totalText = countEl ? countEl.textContent : '';
+
+  function fmt(n) {
+    try { return n.toLocaleString('ru-RU'); } catch (e) { return String(n); }
+  }
+
+  if (search) {
+    search.addEventListener('input', function () {
+      var q = search.value.trim().toLowerCase();
+      var rows = tbody.querySelectorAll('tr');
+      var shown = 0;
+      rows.forEach(function (row) {
+        var cell = row.querySelector('[data-title]');
+        var title = cell ? (cell.getAttribute('data-title') || '').toLowerCase() : '';
+        var match = q === '' || title.indexOf(q) !== -1;
+        row.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      if (countEl) countEl.textContent = q === '' ? totalText : fmt(shown);
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+    });
+  }
 })();

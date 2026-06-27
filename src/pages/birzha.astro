@@ -47,8 +47,17 @@ const itemListLd = {
     ) : (
       <>
         <p class="muted birzha-meta">
-          Каналов в каталоге: <strong>{fmtNum(total)}</strong>{updated && <> · обновлено {updated}</>}
+          Каналов в каталоге: <strong id="birzha-count">{fmtNum(total)}</strong>{updated && <> · обновлено {updated}</>}
         </p>
+        <input
+          class="birzha-search"
+          id="birzha-search"
+          type="search"
+          placeholder="Поиск канала по названию…"
+          autocomplete="off"
+          aria-label="Поиск канала по названию"
+        />
+        <p class="muted birzha-empty" id="birzha-empty" hidden>По запросу ничего не найдено.</p>
         <div class="table-wrap">
           <table class="birzha" id="birzha">
             <thead>
