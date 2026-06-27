@@ -122,17 +122,37 @@ a { color: var(--brand); }
 .copyright { margin-top: 24px; font-size: 13px; }
 @media (min-width: 720px) { .cols { grid-template-columns: 2fr 1fr 1fr; } }
 
-/* ---------- Hero ---------- */
-.hero { text-align: center; padding: 76px 0 64px; background: radial-gradient(58rem 26rem at 50% -22%, rgba(20,184,166,.16), transparent 70%); }
-.hero-badge { display: inline-block; background: #CCFBF1; color: #0B5D56; font-weight: 700; font-size: 14px; padding: 7px 15px; border-radius: 999px; margin-bottom: 22px; }
+/* ---------- Hero (тёмная сцена с китом в цифрах) ---------- */
+.hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: clamp(520px, 72vh, 720px); padding: 0; text-align: left; background: #06101f; }
+/* картинка-сцена (кит + цифры + кубы) фоном справа */
+.hero .bg { position: absolute; inset: 0; z-index: 0; background-position: right center; background-size: cover; background-repeat: no-repeat; animation: hero-floaty 14s ease-in-out infinite; }
+/* затемнение слева под текст + плавный стык с фоном */
+.hero .veil { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #06101f 0%, rgba(6,16,31,.92) 30%, rgba(6,16,31,.45) 55%, rgba(6,16,31,0) 78%); }
+.hero .veil2 { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(6,16,31,.55) 0%, rgba(6,16,31,0) 25%, rgba(6,16,31,0) 75%, rgba(6,16,31,.6) 100%); }
+.hero .container { position: relative; z-index: 2; }
+.hero .copy { max-width: 540px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(45,212,191,.12); color: #7de8d6; border: 1px solid rgba(45,212,191,.28); font-weight: 600; font-size: 14px; padding: 8px 15px; border-radius: 999px; margin-bottom: 22px; }
 /* плавающий кит в бейдже — лёгкое покачивание */
 .hero-badge .float { display: inline-block; animation: float 3.2s ease-in-out infinite; }
-.hero h1 { font-size: 34px; margin: 0 0 18px; font-weight: 800; }
-@media (min-width: 720px) { .hero h1 { font-size: 52px; } }
-/* акцентное слово: морской градиент, который медленно «дышит» */
+.hero h1 { font-size: 34px; line-height: 1.07; margin: 0 0 18px; font-weight: 800; letter-spacing: -.02em; color: #eaf4ff; }
+@media (min-width: 720px) { .hero h1 { font-size: 56px; } }
+/* акцентное слово: морской градиент, который медленно «дышит» (глобально для всех страниц) */
 .accent { background: var(--grad); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-pan 7s ease infinite; }
 .lead { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 auto 30px; }
-.hero-note { font-size: 14px; color: var(--muted); margin-top: 16px; }
+/* на тёмном hero акцент и подзаголовок перекрашиваем: тёмный градиент не виден на навигейви */
+.hero .accent { background: none; color: #2dd4bf; -webkit-text-fill-color: #2dd4bf; animation: none; }
+.hero .lead { font-size: 19px; line-height: 1.55; color: #a9bdd8; max-width: 540px; margin: 0 0 28px; }
+.hero-cta { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; text-decoration: none; padding: 15px 30px; border-radius: 14px; color: #04121a; background: linear-gradient(135deg, #2dd4bf, #22a8c9); box-shadow: 0 12px 34px rgba(45,212,191,.35); transition: transform .18s var(--ease); }
+.hero-cta:hover { transform: translateY(-2px); }
+.hero-note { font-size: 14px; color: #6f86a8; margin-top: 16px; }
+@keyframes hero-floaty { 0%,100% { transform: scale(1.04) translateY(0); } 50% { transform: scale(1.04) translateY(-14px); } }
+/* мобильная: картинка сверху, текст под ней */
+@media (max-width: 820px) {
+  .hero { align-items: flex-start; min-height: auto; padding-top: 58vh; text-align: center; }
+  .hero .bg { background-position: center top; background-size: auto 56vh; }
+  .hero .veil { background: linear-gradient(180deg, rgba(6,16,31,0) 36%, #06101f 58%); }
+  .hero .copy { margin: 0 auto; }
+}
 
 /* ---------- Шаги (карточки) ---------- */
 .steps-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 980px; margin: 0 auto; }
