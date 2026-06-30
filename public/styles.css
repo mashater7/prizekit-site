@@ -142,7 +142,17 @@ textarea:focus, input:focus, select:focus { outline: none; border-color: var(--b
 .nav a { color: var(--fg); text-decoration: none; font-weight: 600; font-size: 16px; padding: 13px 10px; border-radius: 10px; transition: color .15s, background .15s; }
 .nav a:hover { color: var(--ink); background: rgba(255,255,255,.04); }
 .nav a.active { color: var(--brand-dark); background: rgba(45,212,191,.1); }
-.site-header .btn { margin-left: auto; padding: 9px 15px; font-size: 14px; }
+.site-header .btn { margin-left: auto; padding: 9px 15px; font-size: 14px; white-space: nowrap; flex: none; }
+
+/* Узкие телефоны: ужимаем логотип/кнопку/отступы, чтобы шапка влезла в одну
+   строку и кнопка «Открыть бот» не переносилась на две строки. */
+@media (max-width: 400px) {
+  .hdr { gap: 9px; padding: 11px 12px; }
+  .logo { font-size: 15px; gap: 8px; }
+  .logo img { width: 28px; height: 28px; }
+  .site-header .btn { padding: 8px 12px; font-size: 13px; }
+  .burger { width: 40px; height: 38px; }
+}
 
 .burger { flex: none; display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
   width: 44px; height: 40px; padding: 0 10px; background: var(--surface); border: 1px solid var(--border);
