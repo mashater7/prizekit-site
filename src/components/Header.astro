@@ -1,6 +1,6 @@
 ---
 import { SITE, NAV, withBase } from '../data/site';
-// Активная вкладка — подсвечиваем (как у RandoCat оранжевая активная).
+// Активная вкладка — подсвечиваем.
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isActive = (href) => {
   const h = withBase(href).replace(/\/+$/, '') || '/';
@@ -10,10 +10,28 @@ const isActive = (href) => {
 <header class="site-header">
   <div class="hdr">
     <a href={withBase('')} class="logo"><img src={withBase('logo.jpg')} alt={SITE.botName} width="32" height="32" /> {SITE.botName}</a>
-    {/* RandoCat-стиль: вкладки в один ряд, на мобилке скроллятся вбок */}
-    <nav class="nav" aria-label="Разделы сайта">
-      {NAV.map((item) => <a href={withBase(item.href)} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>)}
+    {/* Навигация-капсула (тёмное стекло). На мобилке — отдельной строкой со скроллом. */}
+    <nav class="nav-cap" aria-label="Разделы сайта">
+      <div class="nav-scroll" id="nav-scroll">
+        {NAV.map((item) => <a href={withBase(item.href)} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>)}
+      </div>
     </nav>
     <a href={SITE.botUrl} class="btn">Открыть бот</a>
   </div>
 </header>
+<script is:inline>
+  // Удобство: активную вкладку проматываем в зону видимости (если ушла за край).
+  (function () {
+    function fix() {
+      var box = document.getElementById('nav-scroll');
+      if (!box) return;
+      var a = box.querySelector('a.active');
+      if (!a) return;
+      var br = box.getBoundingClientRect(), ar = a.getBoundingClientRect();
+      var delta = (ar.left - br.left) - 16;
+      if (delta > 0) box.scrollLeft += delta;
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix);
+    else fix();
+  })();
+</script>
