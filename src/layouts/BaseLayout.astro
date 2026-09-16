@@ -97,7 +97,9 @@ const allLd = [orgLd, websiteLd, ...jsonLd];
     <Header />
     <main><slot /></main>
     <Footer />
-    <script is:inline src={withBase('anim.js')} defer></script>
+    {/* Появление карточек при прокрутке убрано 16.09.2026 по правке владелицы:
+       на телефоне всё, что ниже экрана, было прозрачным, и страница выглядела
+       законченной там, где она не заканчивалась. Теперь текст виден сразу. */}
     <script is:inline src={withBase('ocean.js')} defer></script>
   </body>
 </html>
